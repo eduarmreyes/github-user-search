@@ -1,10 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GitHub Search",
+  "name": "GitHub Search implementation by @eduarmreyes",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
+      "url": "https://favicon.io/favicon-generator/?t=G&ff=Aldrich&fs=110&fc=%23FFF&b=rounded&bc=%23222",
       "type": "image/x-icon"
     },
     {

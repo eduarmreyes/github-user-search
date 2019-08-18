@@ -1,0 +1,24 @@
+import React from "react";
+
+import FormSearch from "./_form_search";
+
+class Form extends React.Component {
+  handleSearch = () => {
+    this.props.handleSearch();
+  };
+  render() {
+    return (
+      <form onSubmit={this.handleSearch}>
+        <label htmlFor="search_term">
+          <span role="img" aria-label="seach emoji">
+            🔎
+          </span>{" "}
+          Search over millions of users:{" "}
+        </label>
+        <FormSearch handleSearch={this.handleSearch} />
+      </form>
+    );
+  }
+}
+
+export default Form;
