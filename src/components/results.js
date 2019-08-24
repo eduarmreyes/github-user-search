@@ -16,9 +16,9 @@ class Results extends React.Component {
   }
 
   componentDidMount() {
-    // this.getExtraUserData(this.props.user.url).then(data => {
-    //   this.setState({ user: data });
-    // });
+    this.getExtraUserData(this.props.user.url).then(data => {
+      this.setState({ user: data });
+    });
   }
 
   render() {
