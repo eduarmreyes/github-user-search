@@ -3,9 +3,10 @@ import React from "react";
 import FormSearch from "./_form_search";
 
 class Form extends React.Component {
-  handleSearch = () => {
-    this.props.handleSearch();
+  handleSearch = searchTerm => {
+    this.props.handleSearch(searchTerm);
   };
+
   render() {
     return (
       <form onSubmit={this.handleSearch}>

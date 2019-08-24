@@ -6,9 +6,22 @@ class FormSearch extends React.Component {
   state = {
     searchTerm: "",
   };
+
   handleInputChange = e => {
     this.setState({ searchTerm: e.currentTarget.value });
   };
+
+  handleClick = e => {
+    e.preventDefault();
+    this.props.handleSearch(this.state.searchTerm);
+  };
+
+  componentDidMount() {
+    if (Boolean(this.props.searchTerm)) {
+      this.setState({ searchTerm: this.props.searchTerm });
+    }
+  }
+
   render() {
     return (
       <div
@@ -36,6 +49,7 @@ class FormSearch extends React.Component {
           onChange={this.handleInputChange}
         />
         <button
+          onClick={this.handleClick}
           css={css`
             appearance: none;
             background-position: -1px -1px;
