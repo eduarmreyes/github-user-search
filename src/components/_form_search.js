@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { css, jsx } from "@emotion/core";
+import { withRouter } from "react-router-dom";
 
 class FormSearch extends React.Component {
   state = {
@@ -13,7 +14,7 @@ class FormSearch extends React.Component {
 
   handleClick = e => {
     e.preventDefault();
-    this.props.handleSearch(this.state.searchTerm);
+    window.location.assign(`/?q=${this.state.searchTerm}`);
   };
 
   componentDidMount() {
@@ -83,4 +84,4 @@ class FormSearch extends React.Component {
   }
 }
 
-export default FormSearch;
+export default withRouter(FormSearch);

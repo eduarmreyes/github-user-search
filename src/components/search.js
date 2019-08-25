@@ -8,10 +8,6 @@ import Results from "./results";
 class Search extends React.Component {
   state = { searchTerm: "", userData: {} };
 
-  handleSearch = searchTerm => {
-    this.props.history.push(`/?q=${searchTerm}`);
-  };
-
   async getUserData(searchTerm) {
     return await fetch(`https://api.github.com/search/users?q=${searchTerm}`)
       .then(data => {
@@ -46,10 +42,7 @@ class Search extends React.Component {
               }
             `}
           >
-            <FormSearch
-              searchTerm={this.props.searchTerm}
-              handleSearch={this.handleSearch}
-            />
+            <FormSearch searchTerm={this.props.searchTerm} />
           </form>
         </header>
         <div

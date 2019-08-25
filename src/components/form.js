@@ -16,7 +16,7 @@ class Form extends React.Component {
           </span>{" "}
           Search over millions of users:{" "}
         </label>
-        <FormSearch handleSearch={this.handleSearch} />
+        <FormSearch />
       </form>
     );
   }
