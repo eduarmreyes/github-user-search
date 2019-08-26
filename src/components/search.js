@@ -32,6 +32,36 @@ class Search extends React.Component {
     });
   }
 
+  handleNextPage = () => {
+    if (this.state.currentPage === this.state.userData.total_count) {
+      return false;
+    }
+    this.setState({ currentPage: this.state.currentPage + 1 }, () => {
+      this.getUserData(this.state.searchTerm, this.state.currentPage).then(
+        data => {
+          this.setState({
+            userData: data,
+          });
+        }
+      );
+    });
+  };
+
+  handlePreviousPage = () => {
+    if (this.state.currentPage === 1) {
+      return false;
+    }
+    this.setState({ currentPage: this.state.currentPage - 1 }, () => {
+      this.getUserData(this.state.searchTerm, this.state.currentPage).then(
+        data => {
+          this.setState({
+            userData: data,
+          });
+        }
+      );
+    });
+  };
+
   render() {
     return (
       <div>
@@ -177,6 +207,7 @@ class Search extends React.Component {
                     outline: 1px solid hotpink;
                   }
                 `}
+                onClick={this.handlePreviousPage}
               >
                 <span role="img" aria-label="hand indicating to the left">
                   👈
@@ -213,6 +244,7 @@ class Search extends React.Component {
                     outline: 1px solid hotpink;
                   }
                 `}
+                onClick={this.handleNextPage}
               >
                 Next page{" "}
                 <span role="img" aria-label="hand indicating to the right">
