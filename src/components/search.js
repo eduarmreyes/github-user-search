@@ -7,7 +7,7 @@ import FormSearch from "./_form_search";
 import Results from "./results";
 
 class Search extends React.Component {
-  state = { searchTerm: "", userData: {}, currentPage: 0, totalPages: 0 };
+  state = { userData: {}, currentPage: 0, totalPages: 0 };
 
   async getUserData(searchTerm, page = 1) {
     return await fetch(
@@ -22,14 +22,16 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    this.getUserData(this.props.searchTerm).then(data => {
-      const totalPages = data.total_count / 30;
-      this.setState({
-        userData: data,
-        currentPage: 1,
-        totalPages: Math.ceil(Number(totalPages)),
-      });
-    });
+    this.getUserData(this.props.searchTerm, Number(this.props.page) || 1).then(
+      data => {
+        const totalPages = data.total_count / 30;
+        this.setState({
+          userData: data,
+          currentPage: Number(this.props.page) || 1,
+          totalPages: Math.ceil(Number(totalPages)),
+        });
+      }
+    );
   }
 
   handleNextPage = () => {
@@ -37,12 +39,9 @@ class Search extends React.Component {
       return false;
     }
     this.setState({ currentPage: this.state.currentPage + 1 }, () => {
-      this.getUserData(this.state.searchTerm, this.state.currentPage).then(
-        data => {
-          this.setState({
-            userData: data,
-          });
-        }
+      debugger;
+      window.location.assign(
+        `/?q=${this.props.searchTerm}&page=${this.state.currentPage}`
       );
     });
   };
@@ -52,12 +51,8 @@ class Search extends React.Component {
       return false;
     }
     this.setState({ currentPage: this.state.currentPage - 1 }, () => {
-      this.getUserData(this.state.searchTerm, this.state.currentPage).then(
-        data => {
-          this.setState({
-            userData: data,
-          });
-        }
+      window.location.assign(
+        `/?q=${this.props.searchTerm}&page=${this.state.currentPage}`
       );
     });
   };

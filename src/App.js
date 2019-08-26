@@ -21,9 +21,25 @@ class App extends React.Component {
             if (Boolean(location.search)) {
               const searchTerm = location.search.substring(
                 3,
-                location.search.length
+                location.search.indexOf("&") !== -1
+                  ? location.search.indexOf("&")
+                  : location.search.length
               );
-              return <Search history={history} searchTerm={searchTerm} />;
+
+              const page =
+                location.search.indexOf("&") !== -1
+                  ? location.search.substring(
+                      location.search.indexOf("&") + 6,
+                      location.search.length
+                    )
+                  : 1;
+              return (
+                <Search
+                  history={history}
+                  page={Number(page)}
+                  searchTerm={searchTerm}
+                />
+              );
             }
           }}
         />
